@@ -1,4 +1,4 @@
-import { buscarElemento } from "../js/busquedas.js";
+import { buscarElemento } from "../js/busque.js";
 
 let trailer = [
     'zh4KhVSMwtQ',
@@ -22,7 +22,7 @@ let trailer = [
     'oBmazlyP220',
     'gMPEbJQun68'
 ]
-// JavaScript
+
 const section = document.getElementById('peliculas');
 const crear = () => {
     const divGeneral = document.createElement('div');
@@ -117,7 +117,7 @@ function leerMasyMenos() {
     })
 }
 
-// button look
+
 export function btnLookT() {
     let cardTrailer = document.getElementById('divGeneralTrailer');
     matriz.forEach(elemento => {
@@ -125,12 +125,10 @@ export function btnLookT() {
             cardTrailer.style = 'display: flex'
             let iframe = document.getElementById('iframeP')
             iframe.src = `https://www.youtube.com/embed/${elemento[9]}`
-            // elemento[8].getElementById 
         })
     })
 }
 
-// trailer
 const cardTrailer = () => {
     const divGeneral = document.createElement('div');
     divGeneral.id = 'divGeneralTrailer';
@@ -163,6 +161,5 @@ const cardTrailer = () => {
     main.appendChild(divGeneral);
     return divGeneral;
 }
-// Trailer
 
 cardTrailer();
