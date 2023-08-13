@@ -1,8 +1,8 @@
-import { buscarElemento } from "../js/busque.js";
+import { buscarElemento } from "./busque.js";
 
 const series = document.getElementById('series');
 
-const baseURL = 'https://image.tmdb.org/t/p/w500';
+const baseURL = 'https://image.tmdb.org/t/p/w500'; // Base URL de las imágenes de la API
 
 
 let arraySeries = [
@@ -47,15 +47,15 @@ const crearSeries = (serieData) => {
 
     const img = document.createElement('img');
     img.id = 'img2';
-    img.src = baseURL + serieData.poster_path; 
+    img.src = baseURL + serieData.poster_path; // Concatenar el 'poster_path' con la base URL de las imágenes
 
     const h1 = document.createElement('h4');
     h1.id = 'h4';
-    h1.textContent = serieData.name;
+    h1.textContent = serieData.name; // Asigna el nombre de la serie desde los datos obtenidos de la API
 
     const descripcion = document.createElement('p');
     descripcion.id = 'description';
-    descripcion.textContent = serieData.overview;
+    descripcion.textContent = serieData.overview; // Asigna la descripción de la serie desde los datos obtenidos de la API
 
     const leermas = document.createElement('button');
     leermas.id = 'leermas';
@@ -117,9 +117,9 @@ function leerMasyMenos2() {
                 console.log(elemento[6].textContent);
                 if (elemento[6].textContent == 'Leer Más') {
                     elemento[7].style = 'flex-direction: column;'
-                    elemento[4].style = 'overflow: visible; width: 100%; white-space: wrap; ';
+                    elemento[4].style = 'overflow: visible; width: 100%; white-space: wrap; '; // Cambia el overflow para que se muestre todo el texto
                     elemento[6].textContent = 'Leer Menos'
-                    elemento[6].style = 'display: block; text-align: start;';
+                    elemento[6].style = 'display: block; text-align: start;'; // Oculta el botón "Leer más" después de expandir el texto
                 } else if (elemento[6].textContent == "Leer Menos") {
                     elemento[4].style = 'white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'
                     elemento[7].style = 'flex-direction: wrap;'
@@ -129,13 +129,55 @@ function leerMasyMenos2() {
         })
 }
 
+function openTrailerWindow(trailerId) {
+    const trailerURL = `https://www.youtube.com/embed/${trailerId}`;
+    const ventanaNueva = window.open(
+        trailerURL,
+        "_blank",
+        "width=800,height=450,menubar=no,toolbar=no,location=no"
+    );
+
+    // Verificar si la ventana emergente se abrió correctamente
+    if (!ventanaNueva || ventanaNueva.closed || typeof ventanaNueva.closed === "undefined") {
+        alert("La reproducción del video requiere habilitar ventanas emergentes.");
+    } else {
+        const contenidoHTML = `
+        <style>
+            body {
+                background-color: #341740;
+                color: #ffffff;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            .video-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #000;
+            }
+            iframe {
+                width: 100%;
+                max-width: 800px;
+                height: 450px;
+                border: none;
+            }
+        </style>
+        <div class="video-container">
+            <iframe src="${trailerURL}" allowfullscreen></iframe>
+        </div>
+        `;
+        ventanaNueva.document.write(contenidoHTML);
+        ventanaNueva.document.close();
+    }
+}
+
 export function btnLookT() {
-    let cardTrailer = document.getElementById('divGeneralTrailer');
     matriz2.forEach(elemento => {
         elemento[8].addEventListener('click', () => {
-            cardTrailer.style = 'display: flex'
-            let iframe = document.getElementById('iframeP')
-            iframe.src = `https://www.youtube.com/embed/${elemento[9]}`
+            const trailerId = elemento[9];
+            openTrailerWindow(trailerId); 
         })
     })
 }

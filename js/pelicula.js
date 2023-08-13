@@ -1,28 +1,28 @@
-import { buscarElemento } from "../js/busque.js";
+import { buscarElemento } from "./busque.js";
 
 let trailer = [
+    'shW9i6k8cB0',
+    'ZtuFgnxQMrA',
     'zh4KhVSMwtQ',
-    'av-9lvBdZ0k',
-    'NjBGzJ5FFmI',
-    'uNZu5dNck9Y',
-    'Gwk9EMcDsj4',
-    'uIvBFUYzeOc',
-    'OzAoGlARPFQ',
+    'vq-8aIZZZUQ',
+    'XgNtxm5aTv0',
     '7wuK5PhzcNY',
-    'mJqwSpxq2W4',
-    'sinstLBy9l8',
-    'FDhvbIqTQwI',
-    'JdMxXytjzoc',
-    'xdxFwUqKc-A',
-    'w65PKQBycNI',
-    'izQA8C3emt4',
-    'jxkGUWRJV24',
-    'awpDl9eB6Tg',
+    'gp4Z6bZ5tVU',
+    'Gwk9EMcDsj4',
+    'eoOaKN4qCKw',
+    'eoOaKN4qCKw',
+    'zKvLB-N2RdA',
+    'zKvLB-N2RdA',
+    '9SfnkovRye8',
+    'z_HUm8JZlVs',
+    'OzAoGlARPFQ',
+    '1QZNSrMTBSM',
+    'fORXd1iuypw',
+    '1UD6LTiwKUk',
     'lizOlZ-r3II',
-    'oBmazlyP220',
-    'gMPEbJQun68'
+    '1c66wfYbNEs'
 ]
-
+// JavaScript
 const section = document.getElementById('peliculas');
 const crear = () => {
     const divGeneral = document.createElement('div');
@@ -117,18 +117,61 @@ function leerMasyMenos() {
     })
 }
 
+function openTrailerWindow(trailerId) {
+    const trailerURL = `https://www.youtube.com/embed/${trailerId}`;
+    const ventanaNueva = window.open(
+        trailerURL,
+        "_blank",
+        "width=800,height=450,menubar=no,toolbar=no,location=no"
+    );
 
-export function btnLookT() {
-    let cardTrailer = document.getElementById('divGeneralTrailer');
-    matriz.forEach(elemento => {
-        elemento[8].addEventListener('click', () => {
-            cardTrailer.style = 'display: flex'
-            let iframe = document.getElementById('iframeP')
-            iframe.src = `https://www.youtube.com/embed/${elemento[9]}`
-        })
-    })
+    // Verificar si la ventana emergente se abrió correctamente
+    if (!ventanaNueva || ventanaNueva.closed || typeof ventanaNueva.closed === "undefined") {
+        alert("La reproducción del video requiere habilitar ventanas emergentes.");
+    } else {
+        const contenidoHTML = `
+        <style>
+            body {
+                background-color: #341740;
+                color: #ffffff;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            .video-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #000;
+            }
+            iframe {
+                width: 100%;
+                max-width: 800px;
+                height: 450px;
+                border: none;
+            }
+        </style>
+        <div class="video-container">
+            <iframe src="${trailerURL}" allowfullscreen></iframe>
+        </div>
+        `;
+        ventanaNueva.document.write(contenidoHTML);
+        ventanaNueva.document.close();
+    }
 }
 
+// button look
+export function btnLookT() {
+    matriz.forEach(elemento => {
+        elemento[8].addEventListener('click', () => {
+            const trailerId = elemento[9];
+            openTrailerWindow(trailerId);
+        });
+    });
+}
+
+// trailer
 const cardTrailer = () => {
     const divGeneral = document.createElement('div');
     divGeneral.id = 'divGeneralTrailer';
@@ -161,5 +204,6 @@ const cardTrailer = () => {
     main.appendChild(divGeneral);
     return divGeneral;
 }
+// Trailer
 
 cardTrailer();
