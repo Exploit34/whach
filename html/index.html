@@ -4,78 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <title>WatchMovie</title>
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
-    <!-- Agrega el enlace a la hoja de estilo de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark custom-navbar">
+    <nav class="navbar navbar-expand-md navbar-dark custom-navbar ">
         <div class="container">
             <a class="navbar-brand" href="#">WatchMovie</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-desplegable"
-                aria-controls="menu-desplegable" aria-expanded="false" aria-label="Menu de navegación">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-desplegable"
+                aria-controls="menu-desplegable" aria-expanded="false" aria-label="Menu de navegación" >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="menu-desplegable">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <button class="nav-link Navegar0" type="button">
-                            <span class="icon">
-                                <i class="ri-map-2-fill"></i>
-                            </span>
-                            Navegar
-                        </button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link Navegar1" type="button">
+                <ul class="navbar-nav mr-auto" id="par">
+                    
+                    <li class="nav-item dropdown" id="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="menuPeliculasSeries" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="icon">
                                 <i class="ri-movie-fill"></i>
                             </span>
-                            Peliculas
-                        </button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link Navegar2" type="button">
-                            <span class="icon">
-                                <i class="ri-film-line"></i>
-                            </span>
-                            Series
-                        </button>
+                            Películas y Series
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="menuPeliculasSeries">
+                            <li class="nav-item">
+                                <button class="nav-link Navegar1" type="button">
+                                    <span class="icon">
+                                        <i class="ri-movie-fill"></i>
+                                    </span>
+                                    Peliculas
+                                </button>
+                                <button class="nav-link Navegar3" type="button">
+                                    <span class="icon">
+                                        <i class="ri-film-line"></i>
+                                    </span>
+                                    Peliculas de Dramas
+                                </button>
+                                <button class="nav-link Navegar4" type="button">
+                                    <span class="icon">
+                                        <i class="ri-film-line"></i>
+                                    </span>
+                                    Peliculas de Comedia
+                                </button>
+                                <button class="nav-link Navegar5" type="button">
+                                    <span class="icon">
+                                        <i class="ri-film-line"></i>
+                                    </span>
+                                    Peliculas de Historia
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link Navegar0" type="button">
+                                    <span class="icon">
+                                        <i class="ri-map-2-fill"></i>
+                                    </span>
+                                    Navegar
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link Navegar2" type="button">
+                                    <span class="icon">
+                                        <i class="ri-film-line"></i>
+                                    </span>
+                                    Series
+                                </button>
+                                <button class="nav-link Navegar6" type="button">
+                                    <span class="icon">
+                                        <i class="ri-film-line"></i>
+                                    </span>
+                                    Series de Comedia
+                                </button>
+                                <button class="nav-link Navegar7" type="button">
+                                    <span class="icon">
+                                        <i class="ri-film-line"></i>
+                                    </span>
+                                    Series de Animacion
+                                </button>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
-                <section class="search">
-                    <i class="ri-search-line"></i>
-                    <input type="search" id="searchInput" placeholder="Ingrese su búsqueda...">
-                </section>
+              
             </div>
         </div>
     </nav>
 
     <main>
         <div id="general">
+            <section class="search">
+                <i class="ri-search-line"></i>
+                <input type="search" id="searchInput" placeholder="Ingrese su búsqueda...">
+            </section>
             <section id="sectionPelis">
                 <h3 id="h4pelis">Peliculas</h3>
             </section>
             <section id="peliculas">
+            </section>
+            <section id="sectionPelisDocumental">
+                <h3 id="h4Dramas">Peliculas de dramas</h3>
+            </section>
+            <section id="pelisDocumental">
+            </section>
+            <section id="sectionPelisComedia">
+                <h3 id="h4Comedia">Peliculas de Comedia</h3>
+            </section>
+            <section id="pelisComedia">
+            </section>
+            <section id="sectionPelisHistoria">
+                <h3 id="h4Historia">Peliculas de Historia</h3>
+            </section>
+            <section id="pelisHistoria">
             </section>
             <section id="sectionSeries">
                 <h3 id="h4series">Series</h3>
             </section>
             <section id="series">
             </section>
+            <section id="sectionSeriesComedia">
+                <h3 id="h4seriesComedia">Series de Comedia</h3>
+            </section>
+            <section id="seriesComedia">
+            </section>
+            <section id="sectionSeriesAnima">
+                <h3 id="h4seriesAnima">Series de Animacion</h3>
+            </section>
+            <section id="seriesAnimacion">
+            </section>
         </div>
         <div id="resultados"></div>
     </main>
 
-    <!-- Agrega los enlaces a los scripts de Bootstrap y tus propios scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="/js/pelicula.js"></script>
+    <script type="module" src="/js/peliDocumental.js"></script>
+    <script type="module" src="/js/PeliComedias.js"></script>
+    <script type="module" src="/js/peliHistory.js"></script>
     <script type="module" src="/js/series.js"></script>
-    <script type="module" src="/js/navegacion.js"></script>
+    <script type="module" src="/js/SeriesComedia.js"></script>
+    <script type="module" src="/js/SeriesAnimacion.js"></script>
+    <script type="module" src="/js/naver.js"></script>
 </body>
 
 </html>

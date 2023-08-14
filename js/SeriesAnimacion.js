@@ -1,17 +1,17 @@
 import { buscarElemento } from "./busque.js";
 
-const series = document.getElementById('series');
+const series = document.getElementById('seriesAnimacion');
 
 const baseURL = 'https://image.tmdb.org/t/p/w500'; // Base URL de las imágenes de la API
 
 
 let arraySeries = [
-    'd5bs2bYAGUA',
-    'vfbYg3f8_6s',
-    'OMY0zaGJ7Wg',
-    'LOoUIgOL9E4',
-    'T3Vytwyp2XI',
-    'kW1ppRzFrt4',
+    '_-6_Ia6k-tE',
+    'A9jJGi7X3Bw',
+    'wZ4fRYkDVgk',
+    'jsVcX9-cYZw',
+    '3Mz_aAbtm6E',
+    'HLyXCOgXJns',
     'QoCZB5304P0',
     'FnYQWX5Bo_k',
     '1dqOSD2iDdI',
@@ -28,12 +28,12 @@ let arraySeries = [
     'hatjI-dygQE'
   ]
   let arraySeries1 = [
-    'DMr7iVbtDDg',
-    'CA48beu3cxI',
-    'zPZFUkD0bwc',
-    'dUne32mEPew',
-    'H--QofFkPqQ',
-    'qSgGnZmTMOU',
+    'fvJaOL634W4',
+    'ZO7VA1VMAKo',
+    'Aght7Dhprz4',
+    'Kt621vg0zn4',
+    '3Mz_aAbtm6E',
+    'HLyXCOgXJns',
     'QoCZB5304P0',
     'FnYQWX5Bo_k',
     '1dqOSD2iDdI',
@@ -115,22 +115,27 @@ const requireOptions = {
 let matriz2 = [];
 let i = 0;
 
-fetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', requireOptions)
+
+
+fetch('https://api.themoviedb.org/3/discover/tv?with_genres=16&language=en-US', requireOptions)
     .then(response => response.json())
     .then(data => {
-        const seriesTrending = data.results;
-        for (const serie of seriesTrending) {
+        const seriesComedia = data.results;
+        for (const serie of seriesComedia) {
             let crearS = crearSeries(serie);
             crearS[9] = arraySeries[i];
             crearS[10] = arraySeries1[i];
-            matriz2.push(crearS)
+            matriz2.push(crearS);
             i++;
         }
-        leerMasyMenos2()
+        leerMasyMenos2();
         buscarElemento();
         btnLookT();
     })
     .catch(err => console.error(err));
+
+
+
 
 console.log(matriz2);
 function leerMasyMenos2() {
@@ -151,6 +156,9 @@ function leerMasyMenos2() {
             });
         })
 }
+
+// ... (Código anterior)
+
 function openTrailerWindow(trailerId1, trailerId2) {
     const trailerURL1 = `https://www.youtube.com/embed/${trailerId1}`;
     const trailerURL2 = `https://www.youtube.com/embed/${trailerId2}`;
@@ -215,6 +223,3 @@ export function btnLookT() {
         });
     });
 }
-
-
-

@@ -1,30 +1,29 @@
 import { buscarElemento } from "./busque.js";
-import { filtrarPeliculas } from "./busque.js";
 
 let trailer = [
-    'shW9i6k8cB0',
-    'ZtuFgnxQMrA',
-    'zh4KhVSMwtQ',
-    'vq-8aIZZZUQ',
-    'gp4Z6bZ5tVU',
-    '7wuK5PhzcNY',
-    'gp4Z6bZ5tVU',
-    'Gwk9EMcDsj4',
-    'eoOaKN4qCKw',
-    'eoOaKN4qCKw',
-    'zKvLB-N2RdA',
-    'zKvLB-N2RdA',
-    '9SfnkovRye8',
-    'z_HUm8JZlVs',
-    'OzAoGlARPFQ',
-    '1QZNSrMTBSM',
-    'fORXd1iuypw',
-    '1UD6LTiwKUk',
-    'lizOlZ-r3II',
-    '1c66wfYbNEs'
+    'PUcK-59_ykI',
+    'MVvGSBKV504',
+    'awpDl9eB6Tg',
+    'H82uvLvszQ0',
+    '1SqMjrE0J6E',
+    'c2vupbrgySk',
+    'tN8o_E_f9FQ',
+    'jdEEZeRiyeQ',
+    'dyotdtUtKu0',
+    'VhJgNv8b_gs',
+    'mThmo1O7r40',
+    'LA5bl_RRDjU',
+    'it7sNRloq-A',
+    'Sy1V8qlgnW4',
+    '3JN0efm2nHg',
+    '3JN0efm2nHg',
+    'QOcinUKr7Fs',
+    'zmFdhZ6gyUM',
+    '4Ao_sc5sFxE',
+    'ryBqixnFxu4'
 ]
-// JavaScript
-const section = document.getElementById('peliculas');
+
+const section = document.getElementById('pelisDocumental');
 const crear = () => {
     const divGeneral = document.createElement('div');
     divGeneral.id = 'divGeneral';
@@ -80,26 +79,27 @@ const crear = () => {
 const options = { method: 'GET' };
 let matriz = [];
 let i = 0;
-fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&api_key=ebe8a7dd9de9ff2deeefda7565d16289&language=en-US&page=1&sort_by=popularity.desc', options)
+const genreIdDramas = 18; // Identificador del género de comedia
+
+fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&api_key=ebe8a7dd9de9ff2deeefda7565d16289&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genreIdDramas}`, options)
     .then(response => response.json())
     .then(response => {
         console.log(response.results);
         response.results.forEach(element => {
             let array = crear();
-            array[2].src = 'https://image.tmdb.org/t/p/original' + element.backdrop_path
+            array[2].src = 'https://image.tmdb.org/t/p/original' + element.backdrop_path;
             array[3].textContent = element.original_title;
-            array[4].textContent = element.overview
+            array[4].textContent = element.overview;
             array[9] = trailer[i];
             console.log(array[9]);
-            matriz.push(array)
+            matriz.push(array);
             i++;
         });
-        leerMasyMenos()
+        leerMasyMenos();
         buscarElemento();
         btnLookT();
     })
     .catch(err => console.error(err));
-
 
 function leerMasyMenos() {
     matriz.forEach(elemento => {
@@ -165,15 +165,14 @@ function openTrailerWindow(trailerId) {
 // button look
 export function btnLookT() {
     matriz.forEach(elemento => {
-        let cardTrailer = document.getElementById('divGeneralTrailer');
         elemento[8].addEventListener('click', () => {
-            cardTrailer.style = 'display: flex'
             const trailerId = elemento[9];
             openTrailerWindow(trailerId);
         });
     });
 }
 
+// trailer
 const cardTrailer = () => {
     const divGeneral = document.createElement('div');
     divGeneral.id = 'divGeneralTrailer';
