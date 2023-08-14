@@ -1,30 +1,29 @@
 import { buscarElemento } from "./busque.js";
-import { filtrarPeliculas } from "./busque.js";
 
 let trailer = [
-    'shW9i6k8cB0',
-    'ZtuFgnxQMrA',
     'zh4KhVSMwtQ',
-    'vq-8aIZZZUQ',
-    'gp4Z6bZ5tVU',
-    '7wuK5PhzcNY',
-    'gp4Z6bZ5tVU',
-    'Gwk9EMcDsj4',
-    'eoOaKN4qCKw',
-    'eoOaKN4qCKw',
     'zKvLB-N2RdA',
-    'zKvLB-N2RdA',
-    '9SfnkovRye8',
-    'z_HUm8JZlVs',
-    'OzAoGlARPFQ',
-    '1QZNSrMTBSM',
+    'SS4xaLNVqfc',
     'fORXd1iuypw',
+    'TnGl01FkMMo',
+    'tWa3V_n-9iY',
+    'W3-slBOV84w',
+    'Rp20svf0qpA',
+    'iAdeQvl5qKg',
+    'RqrXhwS33yc',
+    '2a3VKZyu_0g',
+    'wKk5VAK1GZQ',
+    'jWA1RS7eehI',
+    'R8xepj9wpi4',
+    'E4dCY_DvT-4',
+    'p5V12Bw41gI',
+    'ffTFm4vFLGk',
     '1UD6LTiwKUk',
     'lizOlZ-r3II',
     '1c66wfYbNEs'
 ]
 // JavaScript
-const section = document.getElementById('peliculas');
+const section = document.getElementById('pelisComedia');
 const crear = () => {
     const divGeneral = document.createElement('div');
     divGeneral.id = 'divGeneral';
@@ -80,21 +79,23 @@ const crear = () => {
 const options = { method: 'GET' };
 let matriz = [];
 let i = 0;
-fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&api_key=ebe8a7dd9de9ff2deeefda7565d16289&language=en-US&page=1&sort_by=popularity.desc', options)
+const genreIdComedia = 35; // Identificador del género de comedia
+
+fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&api_key=ebe8a7dd9de9ff2deeefda7565d16289&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genreIdComedia}`, options)
     .then(response => response.json())
     .then(response => {
         console.log(response.results);
         response.results.forEach(element => {
             let array = crear();
-            array[2].src = 'https://image.tmdb.org/t/p/original' + element.backdrop_path
+            array[2].src = 'https://image.tmdb.org/t/p/original' + element.backdrop_path;
             array[3].textContent = element.original_title;
-            array[4].textContent = element.overview
+            array[4].textContent = element.overview;
             array[9] = trailer[i];
             console.log(array[9]);
-            matriz.push(array)
+            matriz.push(array);
             i++;
         });
-        leerMasyMenos()
+        leerMasyMenos();
         buscarElemento();
         btnLookT();
     })
@@ -165,15 +166,14 @@ function openTrailerWindow(trailerId) {
 // button look
 export function btnLookT() {
     matriz.forEach(elemento => {
-        let cardTrailer = document.getElementById('divGeneralTrailer');
         elemento[8].addEventListener('click', () => {
-            cardTrailer.style = 'display: flex'
             const trailerId = elemento[9];
             openTrailerWindow(trailerId);
         });
     });
 }
 
+// trailer
 const cardTrailer = () => {
     const divGeneral = document.createElement('div');
     divGeneral.id = 'divGeneralTrailer';
