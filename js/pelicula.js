@@ -25,7 +25,9 @@ let trailer = [
 ]
 // JavaScript
 const section = document.getElementById('peliculas');
+
 const crear = () => {
+
     const divGeneral = document.createElement('div');
     divGeneral.id = 'divGeneral';
 
@@ -34,10 +36,11 @@ const crear = () => {
 
     const buttonLook = document.createElement('button')
     buttonLook.id = 'buttonLook'
+
     const h4Look = document.createElement('h4');
     h4Look.id = 'h4Look';
     h4Look.textContent = "Ver trailer"
-    buttonLook.appendChild(h4Look)
+    buttonLook.appendChild(h4Look);
 
     const div = document.createElement('div');
     div.id = 'div';
@@ -55,11 +58,19 @@ const crear = () => {
     leermas.id = 'leermas';
     leermas.textContent = 'Leer Más';
 
+    const trailer = document.createElement('botton');
+    // trailer.id = 'ver trailer';
+    // trailer.textContent = "Ver trailer"
+    // buttonLook.appendChild(h4Look);
+
     const div2 = document.createElement('div')
     div2.id = 'div2'
 
     div2.appendChild(descripcion);
-    div2.appendChild(leermas)
+    div2.appendChild(leermas);
+    div2.appendChild(h4Look);
+    
+    // buttonLook.appendChild(h4Look);
 
     div.appendChild(h1);
     div.appendChild(div2);
@@ -108,7 +119,7 @@ function leerMasyMenos() {
                 elemento[7].style = 'flex-direction: column;'
                 elemento[4].style = 'overflow: visible; width: 100%; white-space: wrap; '; // Cambia el overflow para que se muestre todo el texto
                 elemento[6].textContent = 'Leer Menos'
-                elemento[6].style = 'display: block; text-align: start;'; // Oculta el botón "Leer más" después de expandir el texto
+                elemento[6].style = 'display: block; text-align: start;';
             } else {
                 elemento[4].style = 'white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'
                 elemento[7].style = 'flex-direction: wrap;'
